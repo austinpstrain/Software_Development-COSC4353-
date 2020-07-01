@@ -20,10 +20,12 @@ def login(request):
 		user = authenticate(username=username, password=password)
 		if user:
 			login(request,user)
+			return redirect('home')
 		else:
-			return HttpResponse("Invalid login details given")
+			messages.info(request,'Username OR password is incorrect.')
+			#return HttpResponse("Invalid login details given")
 	else:
-		return render(request, 'quote/login.html')
+		return render(request, 'quote/login.html',{})
     
 
 def profileManager(request):
