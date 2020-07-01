@@ -76,7 +76,6 @@
 
 </head>
 <body>
-	{% include 'quote/navbar.html' %}
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
@@ -117,11 +116,13 @@
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+						Don't have an account? <a href="/registerClient">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center links">
-						Forgot password? <a href="{% url 'reset_password' %}" class="ml-2">Reset password</a>
+						Forgot Password? <a href="/reset_password">Reset Password</a>
 					</div>
+
+					
 			
 				</div>
 			</div>

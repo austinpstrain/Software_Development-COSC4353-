@@ -2,13 +2,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <style>
-  register{
+  registerClient{
     text-align: right;
     color: #cfcfcf;
     display: block;
 }
   h4{
     color: brown;
+  }
+</style>
+
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #fff;
+    margin-right: 20px;
   }
 </style>
 <!---Navbar html code from bootstrap-->
@@ -20,13 +28,27 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/home">Home</a>
-        <a class="nav-item nav-link" href="/login">Login</a>
+        <a class="nav-item nav-link" href="/customer">customer</a>
+        
+        <a class="nav-item nav-link" href="/login">login</a>
+        <a class="nav-item nav-link" href="/account">Settings</a>
+
+
         <a class="nav-item nav-link" href="/quote">Get a Quote</a>
         <a class="nav-item nav-link" href="/history">Quote History</a>
         <a class="nav-item nav-link" href="/profileManager">Profile Manager</a>
         <a class="nav-item nav-link" href="/registerClient">Register</a>
+        
+        
       </div>
     </div>
+
+
+<span class="hello-msg">Hello, {{request.user}}</span>
+  <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+
+
+   
 </nav>
 
 
