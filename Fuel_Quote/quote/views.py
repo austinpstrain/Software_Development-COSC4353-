@@ -14,18 +14,22 @@ def registerClient(request):
     return render(request,"quote/registerClient.html")
 
 def login(request):
-	if request.method == 'POST':
-		username = request.POST.get('username')
-		password = request.POST.get('password')
-		user = authenticate(username=username, password=password)
-		if user:
-			login(request,user)
-			return redirect('home')
-		else:
-			messages.info(request,'Username OR password is incorrect.')
-			#return HttpResponse("Invalid login details given")
+	if request.user.is_authenticated:
+		return redirect('home')
 	else:
-		return render(request, 'quote/login.html',{})
+		if request.method=='POST':
+			username = request.POST.get('username')
+			password = request.POST.get('password')
+		
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request,user)
+				return redirect('home')
+			else:
+				messages.info(request,'Username OR password is incorrect.')
+	
+	context={}
+	return render(request, 'quote/login.html',context)
     
 
 def profileManager(request):
