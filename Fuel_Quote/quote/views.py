@@ -61,9 +61,8 @@ def registerClient(request):
 
 	context = {'form':form}
 	return render(request, 'quote/registerClient.html', context)
-	
 
-#@unauthenticated_user
+
 def loginPage(request):
 
 	if request.method == 'POST':
@@ -79,11 +78,10 @@ def loginPage(request):
 			messages.info(request, 'Username OR password is incorrect')
 
 	context = {}
-	return render(request, 'quote/accountSettings.html', context)
-	
+	return render(request, 'quote/login.html', context)
 	
 
-
+#@unauthenticated_user
 def logoutUser(request):
 	logout(request)
 	return redirect('login')
