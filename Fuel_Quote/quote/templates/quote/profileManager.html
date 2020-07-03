@@ -54,27 +54,7 @@
     }
 </style>
 
-<br>
-<div class="row">
-    <div class="col-md-3">
-        <div class="card card-body">
-            <a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Profile</a>
-            <hr>
-            <h3 style="text-align: center">Account Settings</h3>
-            <hr>
-            <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
-        
-        </div>
-    </div>
-    
-                {% csrf_token %}
-                {{form.as_p}}
-        
-            
-            </form>
-        </div>
-    </div>
-</div>
+
 
 
     <form class="needs-validation" novalidate>
