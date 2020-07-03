@@ -13,16 +13,16 @@ from .forms import CreateUserForm, CustomerForm
 from .decorators import unauthenticated_user
 
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def quote(request):
     return render(request, "quote/form.html")
 
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def history(request):
     return render(request, "quote/history.html")
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def profileManager(request):
 
 	form = CreateUserForm()
@@ -43,7 +43,7 @@ def profileManager(request):
 
 	
 
-#@unauthenticated_user
+@unauthenticated_user
 def registerClient(request):
 
 	form = CreateUserForm()
@@ -63,7 +63,7 @@ def registerClient(request):
 	return render(request, 'quote/registerClient.html', context)
 	
 
-#@unauthenticated_user
+@unauthenticated_user
 def loginPage(request):
 
 	if request.method == 'POST':
@@ -89,12 +89,12 @@ def logoutUser(request):
 	return redirect('login')
 
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def home(request):
 
 	return render(request, 'quote/home.html')
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def accountSettings(request):
 	customer = request.user.customer
 	form = CustomerForm(instance=customer)
@@ -109,15 +109,12 @@ def accountSettings(request):
 	return render(request, 'quote/account_settings.html', context)
 
 	
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def userPage(request):
 	context={}
 	return render(request, 'quote/user.html')
 
-#@login_required(login_url='login')
-def customer(request):
-	
-	return render(request, 'quote/customer.html')
+
 
 
 

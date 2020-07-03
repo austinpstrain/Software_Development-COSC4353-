@@ -1,5 +1,5 @@
 This software is created by:
-Austin Strain (1487409),
+Austin Strain (1487409)
 Jaffar, Kadir (0291141)
 Aakarshan Simkhada (1898617)
 Zainab Dadani (1304129)
@@ -26,9 +26,16 @@ Software must include following components:
 - Fuel Quote Form with Pricing module (Once user enters all required information pricing module predicts the rate)
 - User Fuel Quote History
 
-
+Initialize models before running server with commands:
+python manage.py makemigrations
+python manage.py migrate
 
 Run server with this command:
 python manage.py runserver
 
 Runs on local host url or "127.0.0.1:800"
+
+Library requirents:
+pip install pillow
+pip install django
+
