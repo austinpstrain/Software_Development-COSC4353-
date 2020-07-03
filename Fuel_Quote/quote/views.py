@@ -73,7 +73,7 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('profileManager')
+			return redirect('account')
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 
