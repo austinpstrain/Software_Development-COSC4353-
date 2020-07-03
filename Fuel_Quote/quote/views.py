@@ -74,12 +74,12 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('home')
+			return redirect('account')
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 
 	context = {}
-	return render(request, 'quote/login.html', context)
+	return render(request, 'quote/accountSettings.html', context)
 	
 	
 
