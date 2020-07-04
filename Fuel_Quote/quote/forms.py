@@ -12,11 +12,6 @@ class CustomerForm(ModelForm):
 
 
 
-
-
-
-
-
 class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
