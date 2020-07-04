@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style> 
+        h2{
+            display:grid;
+            font-size: 1.5em;
+            margin-top: 0.83em;
+            margin-bottom: 0.83em;
+            margin-left: 0;
+            margin-right: 0;
+            font-weight: bold;
+        }
         body{ 
             align-self: center;
             background-color: lightblue;
@@ -63,12 +72,13 @@
 </head>
 <body>
     {% include 'quote/navbar.html' %}
-    <h1>Home</h1>
-    
+    <h2>Home</h2>
     <h1>Get a Quote!</h1> 
     <hr>
-    <form align="center">
-        <div class="form-group">
+    <form action = "" method="POST" align = "center">
+        {% csrf_token %}
+        {{form}}
+        <!-- <div class="form-group">
           <label for="gallons">Enter Gallons Requested:</label>
           <input type="number" class="gallons" id="gallons" name="gallons" placeholder="Enter gallons">
         </div>
@@ -85,10 +95,12 @@
         </div>
         <div class="form-group">
           <label class="Suggested Price" >Suggested price/gallon: $1.99 </label>
-          <!---numeric non-editable, price will be calculated by Pricing Module - we are not building pricing module yet-->
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+          numeric non-editable, price will be calculated by Pricing Module - we are not building pricing module yet
+        </div> -->
+        <input type="submit" name="Submit" class="btn btn-primary">
     </form>
+    
+    
     <hr>
     <div align="center">
         <h2>Amount due:</h2>

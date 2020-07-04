@@ -16,3 +16,8 @@ class CreateUserForm(UserCreationForm):
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
 
+class QuoteForm(ModelForm):
+	class Meta:
+		model = Quote
+		fields = '__all__'
+		exclude = ['total_amount']

@@ -9,7 +9,7 @@ from .decorators import unauthenticated_user
 
 # Create your views here.
 from .models import *
-from .forms import CreateUserForm, CustomerForm
+from .forms import CreateUserForm, CustomerForm, QuoteForm
 from .decorators import unauthenticated_user
 
 """ def quote(request, pk):
@@ -25,9 +25,14 @@ def history(request, pk):
 	return render(request, "quote/history.html", context) """
 @login_required(login_url='login')
 def home(request, pk):
+	form = QuoteForm()
+	if request.method == 'POST':
+		form = QuoteForm(request.POST)
+		if form.is_valid():
+			form.save()
 	customer = Customer.objects.get(id=pk)
 	quotes = customer.quote_set.all() 
-	context = {'customer' : customer, 'quotes' : quotes}
+	context = {'customer' : customer, 'quotes' : quotes, 'form' : form}
 	return render(request, 'quote/home.html', context)
 
 
