@@ -31,15 +31,13 @@ def profileManager(request):
 		if form.is_valid():
 			user = form.save()
 			username = form.cleaned_data.get('username')
-
-
 			messages.success(request, 'Profile was created for ' + username)
 
 			return redirect('home')
 		
 
 	context = {'form':form}
-	return render(request, 'quote/home.html', context)
+	return render(request, 'quote/profileManager.html', context)
 
 	
 
@@ -73,7 +71,7 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('profileManager')
+			return redirect("/profileManager")
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 

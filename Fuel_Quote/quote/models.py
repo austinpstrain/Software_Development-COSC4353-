@@ -14,8 +14,13 @@ class Customer(models.Model):
 	def __str__(self):
 		return self.name
 
+class Quote(models.Model):
+	sugestedPrice = models.FloatField()
+	address = models.CharField(max_length = 200, null = True)
+	deliveryDate = models.DateField()
+	gallonsRequested = models.FloatField()
+	Total = models.FloatField()
 
-
-
-
+class History(models.Model):
+	#quote = 
 	
