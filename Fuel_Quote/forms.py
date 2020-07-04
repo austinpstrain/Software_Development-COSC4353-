@@ -11,10 +11,12 @@ class CustomerForm(ModelForm):
 		exclude = ['user']
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> da5cab11b20770e077500290719b16276b3703ed
+
+
+
+
+
 class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
