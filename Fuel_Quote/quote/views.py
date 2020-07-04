@@ -61,7 +61,6 @@ def registerClient(request):
 
 	context = {'form':form}
 	return render(request, 'quote/registerClient.html', context)
-	
 
 @unauthenticated_user
 def loginPage(request):
@@ -74,16 +73,15 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('home')
+			return redirect('profileManager')
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 
 	context = {}
 	return render(request, 'quote/login.html', context)
 	
-	
 
-
+#@unauthenticated_user
 def logoutUser(request):
 	logout(request)
 	return redirect('login')
