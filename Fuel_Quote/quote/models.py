@@ -21,5 +21,22 @@ class Quote(models.Model):
 	gallonsRequested = models.FloatField()
 	Total = models.FloatField()
 
+<<<<<<< HEAD
 """#class History(models.Model):
 	#quote = """
+=======
+class Quote(models.Model):
+	customer = models.ForeignKey(Customer, null = True, on_delete = models.SET_NULL)
+	gallons_requested = models.FloatField(null = True)
+	Address_1 = models.CharField(max_length=100, null=True)
+	Address_2 = models.CharField(max_length=100, null=True)
+	delivery_date = models.DateField(null = True)
+	suggested_price = models.FloatField(null = True)
+	total_amount = models.FloatField(null = True)
+
+	def __float__(self):
+		return self.gallons_requested
+
+
+	
+>>>>>>> 3d93e5142f48af0fc36707fc7d7cfb3e313bd70d
