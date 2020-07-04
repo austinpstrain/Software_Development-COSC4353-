@@ -65,27 +65,15 @@
           <th>Suggested Price/Gallon</th>
           <th>Total Amount Due</th>
         </tr>
-        <tr>
-          <td>100</td>
-          <td>123 FakeAdress, 77021 Houston, Tx</td>
-          <td>6/20/2020</td>
-          <td>1.59</td>
-          <td>15,900</td>
-        </tr>
-        <tr>
-            <td>100</td>
-            <td>123 FakeAdress, 77021 Houston, Tx</td>
-            <td>6/20/2020</td>
-            <td>1.59</td>
-            <td>15,900</td>
-          </tr>
-          <tr>
-            <td>100</td>
-            <td>123 FakeAdress, 77021 Houston, Tx</td>
-            <td>6/20/2020</td>
-            <td>1.59</td>
-            <td>15,900</td>
-          </tr>
+        {% for i in quotes %}
+            <tr>
+                <td>{{i.gallons_requested}}</td>
+                <td>{{i.Address_1}}</td>
+                <td>{{i.deliver_date}}</td>
+                <td>{{i.suggested_price}}</td>
+                <td>{{i.total_amount}}</td>
+            </tr>
+        {% endfor %}
       </table>
     
 </body>

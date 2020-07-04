@@ -73,7 +73,17 @@ class Customer(models.Model):
 		return self.name
 
 
+class Quote(models.Model):
+	customer = models.ForeignKey(Customer, null = True, on_delete = models.SET_NULL)
+	gallons_requested = models.FloatField(null = True)
+	Address_1 = models.CharField(max_length=100, null=True)
+	Address_2 = models.CharField(max_length=100, null=True)
+	delivery_date = models.DateField(null = True)
+	suggested_price = models.FloatField(null = True)
+	total_amount = models.FloatField(null = True)
 
+	def __float__(self):
+		return self.gallons_requested
 
 
 	
