@@ -31,6 +31,7 @@ def home(request, pk):
 	return render(request, 'quote/home.html', context)
 
 
+
 def profileManager(request):
 
 	form = CreateUserForm()
@@ -39,15 +40,14 @@ def profileManager(request):
 		if form.is_valid():
 			user = form.save()
 			username = form.cleaned_data.get('username')
-
-
 			messages.success(request, 'Profile was created for ' + username)
 
 			return redirect('home')
 		
 
 	context = {'form':form}
-	return render(request, 'quote/home.html', context)
+	return render(request, 'quote/profileManager.html', context)
+
 
 def registerClient(request):
 
@@ -67,7 +67,7 @@ def registerClient(request):
 	context = {'form':form}
 	return render(request, 'quote/registerClient.html', context)
 
-
+@unauthenticated_user
 def loginPage(request):
 
 	if request.method == 'POST':
@@ -107,7 +107,6 @@ def accountSettings(request):
 	return render(request, 'quote/account_settings.html', context)
 
 	
-
 def userPage(request):
 	context={}
 	return render(request, 'quote/user.html')

@@ -11,7 +11,6 @@ class CustomerForm(ModelForm):
 		exclude = ['user']
 
 
-
 class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
