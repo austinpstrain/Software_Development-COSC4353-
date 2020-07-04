@@ -12,7 +12,7 @@ from .models import *
 from .forms import CreateUserForm, CustomerForm
 from .decorators import unauthenticated_user
 
-def quote(request, pk):
+""" def quote(request, pk):
 	customer = Customer.objects.get(id=pk)
 	quotes = customer.quote_set.all() 
 	context = {'customer' : customer, 'quotes' : quotes}
@@ -22,7 +22,13 @@ def history(request, pk):
 	customer = Customer.objects.get(id=pk)
 	quotes = customer.quote_set.all() 
 	context = {'customer' : customer, 'quotes' : quotes}
-	return render(request, "quote/history.html", context)
+	return render(request, "quote/history.html", context) """
+
+def home(request, pk):
+	customer = Customer.objects.get(id=pk)
+	quotes = customer.quote_set.all() 
+	context = {'customer' : customer, 'quotes' : quotes}
+	return render(request, 'quote/home.html', context)
 
 
 def profileManager(request):
@@ -85,11 +91,6 @@ def logoutUser(request):
 	logout(request)
 	return redirect('login')
 
-
-
-def home(request):
-
-	return render(request, 'quote/home.html')
 
 
 def accountSettings(request):

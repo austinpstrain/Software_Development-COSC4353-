@@ -33,15 +33,94 @@
         h1{ 
             padding-left: 5%;
             font-size: 100px;
+            text-align:center;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            background-color:#b0d1f0e8; 
+            padding: 5%;
+            padding-left: 5%;
+        }
+        input {
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 2px solid red;
+            background-color:beige;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+         tr:nth-child(even) {
+            background-color: #dddddd;
         }
     </style>
 </head>
 <body>
     {% include 'quote/navbar.html' %}
     <h1>Home</h1>
-    <!--
-        in
-    -->
+    
+    <h1>Get a Quote!</h1> 
+    <hr>
+    <form align="center">
+        <div class="form-group">
+          <label for="gallons">Enter Gallons Requested:</label>
+          <input type="number" class="gallons" id="gallons" name="gallons" placeholder="Enter gallons">
+        </div>
+        <div class ="form-group">
+            <label>Address: </label>
+            
+            <select name="address" id="address">
+                  <option value="Address_1">{{customer.Address_1}}</option>
+                  <option value="Address_1">{{customer.Address_2}}</option>
+            </select>
+        </div>
+            <label for="start">Choose delivery date:</label>
+            <input type="date" id="date" name="date" >
+        </div>
+        <div class="form-group">
+          <label class="Suggested Price" >Suggested price/gallon: $1.99 </label>
+          <!---numeric non-editable, price will be calculated by Pricing Module - we are not building pricing module yet-->
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <hr>
+    <div align="center">
+        <h2>Amount due:</h2>
+        <h3>Calculate with module</h3>
+    </div>
+    
+    
+    
+    <br>
+    <br>
+    <br>
+    <h1>History</h1> 
+
+    <table>
+        <tr>
+            <th>Gallons Requested</th>
+            <th>Delivery Address</th>
+            <th>Deliver Date</th>
+            <th>Suggested Price/Gallon</th>
+            <th>Total Amount Due</th>
+        </tr>
+        {% for i in quotes %}
+            <tr>
+                <td>{{i.gallons_requested}}</td>
+                <td>{{i.Address_1}}</td>
+                <td>{{i.deliver_date}}</td>
+                <td>{{i.suggested_price}}</td>
+                <td>{{i.total_amount}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    
 </body>
 </html>
 

@@ -6,11 +6,11 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path('quote/<str:pk>/', views.quote),
-    path('history/<str:pk>/', views.history),
+    path('home/<str:pk>', views.home, name ="home"),
+#    path('quote/<str:pk>/', views.quote, name = 'quote'),
+#    path('history/<str:pk>/', views.history, name = 'history'),
     path('registerClient/', views.registerClient, name="registerClient"),
     path('profileManager/', views.profileManager),
-    path('home/', views.home),
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('customer/', views.customer),
