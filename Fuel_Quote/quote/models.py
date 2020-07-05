@@ -83,6 +83,3 @@ class Quote(models.Model):
 
 	def __float__(self):
 		return self.gallons_requested
-
-
-	

@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from .decorators import unauthenticated_user
+from django.urls import reverse
+from urllib.parse import urlencode
 
 # Create your views here.
 from .models import *
@@ -25,13 +27,15 @@ def history(request, pk):
 	return render(request, "quote/history.html", context) """
 @login_required(login_url='login')
 def home(request, pk):
-	form = QuoteForm()
+	
+	customer = Customer.objects.get(id=pk)
+	quotes = customer.quote_set.all() 
+	form = QuoteForm(initial={'customer': customer.name})
 	if request.method == 'POST':
 		form = QuoteForm(request.POST)
 		if form.is_valid():
 			form.save()
-	customer = Customer.objects.get(id=pk)
-	quotes = customer.quote_set.all() 
+
 	context = {'customer' : customer, 'quotes' : quotes, 'form' : form}
 	return render(request, 'quote/home.html', context)
 
@@ -48,7 +52,7 @@ def profileManager(request):
 
             messages.success(request, 'Profile was created for ' + username)
 
-            return redirect('home')
+            return redirect('home', 1)
 
     context = {'form': form}
     return render(request, 'quote/home.html', context)
@@ -81,7 +85,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('home', 1) #pk param needs to be dynamic and return customer.id
         else:
             messages.info(request, 'Username OR password is incorrect')
 
