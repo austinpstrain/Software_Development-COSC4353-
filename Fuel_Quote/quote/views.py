@@ -14,23 +14,11 @@ from .models import *
 from .forms import CreateUserForm, CustomerForm, QuoteForm
 from .decorators import unauthenticated_user
 
-""" def quote(request, pk):
-	customer = Customer.objects.get(id=pk)
-	quotes = customer.quote_set.all() 
-	context = {'customer' : customer, 'quotes' : quotes}
-	return render(request, "quote/form.html", context)
-
-def history(request, pk):
-	customer = Customer.objects.get(id=pk)
-	quotes = customer.quote_set.all() 
-	context = {'customer' : customer, 'quotes' : quotes}
-	return render(request, "quote/history.html", context) """
 @login_required(login_url='login')
 def home(request, pk):
-	
 	customer = Customer.objects.get(id=pk)
 	quotes = customer.quote_set.all() 
-	form = QuoteForm(initial={'customer': customer.name})
+	form = QuoteForm(initial={'customer': customer})
 	if request.method == 'POST':
 		form = QuoteForm(request.POST)
 		if form.is_valid():
@@ -125,6 +113,3 @@ def userPage(request):
 def customer(request):
 
     return render(request, 'quote/customer.html')
-
-
-
