@@ -8,11 +8,14 @@ from django.contrib.auth.models import Group
 from .decorators import unauthenticated_user
 from django.urls import reverse
 from urllib.parse import urlencode
-
+import sqlite3
 # Create your views here.
 from .models import *
 from .forms import CreateUserForm, CustomerForm, QuoteForm
 from .decorators import unauthenticated_user
+
+dbname='db.sqlite3'
+logintable='logintable'
 
 @login_required(login_url='login')
 def home(request, pk):
@@ -69,9 +72,14 @@ def loginPage(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
-
+        
+        conn=sqlite3.connect(dbname)
+        cursor=conn.cursor()
+        cursor.execute('Select * from '+str(logintable)+' where username='+str(username)+' and password='+str(password)+';')
+        user=cursor.fetchone()
+        
         if user is not None:
+            user = authenticate(request, username=username, password=password)
             login(request, user)
             return redirect('home', 1) #pk param needs to be dynamic and return customer.id
         else:
@@ -80,7 +88,6 @@ def loginPage(request):
     context = {}
     return render(request, 'quote/login.html', context)
 
-	
 
 
 def logoutUser(request):
