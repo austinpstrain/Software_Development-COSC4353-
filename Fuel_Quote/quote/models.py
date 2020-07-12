@@ -77,7 +77,7 @@ class Customer(models.Model):
 
 
 class Quote(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     gallons_requested = models.FloatField(null=True)
     Address_1 = models.CharField(max_length=100, null=True)
     Address_2 = models.CharField(max_length=100, null=True)
