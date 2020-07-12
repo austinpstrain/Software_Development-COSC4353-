@@ -90,11 +90,11 @@ class Quote(models.Model):
 
 
 class Pricing(models.Model):
-    name = models.CharField(max_length=50, null=True)
-    gallons_requested = models.FloatField(null=True)
+    gallons_requested = models.ForeignKey(
+        Getquote, null=True, on_delete=models.SET_NULL)
     suggested_price = models.FloatField(null=True)
-    user = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    customer = models.ForeignKey(
+        User, null=True, on_delete=models.SET_NULL)
 
-    def __str__(self):
-        return self.name
-
+    def __float__(self):
+        return self.suggested_price
