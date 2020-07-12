@@ -93,6 +93,7 @@ class Pricing(models.Model):
     gallons_requested = models.ForeignKey(
         Quote, null=True, on_delete=models.SET_NULL)
     suggested_price = models.FloatField(null=True)
+    total_price = models.FloatField(null=True)
     customer = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL)
 
