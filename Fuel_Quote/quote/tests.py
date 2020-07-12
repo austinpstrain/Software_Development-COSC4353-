@@ -98,7 +98,7 @@ class TestCustomerModel(TestCase):
 
 '''
 
-
+'''
 class TestPricingModel:
 	def test_str_return(self):
 		nam = mixer.blend(Pricing, name = "John")
@@ -111,6 +111,17 @@ class TestPricingModel:
 		assert pri_result == 1.89
 
 
+'''
+
+
+class TestHome(TestCase):
+
+	def test_whatever_list_view(self):
+		w=self.create_watev()
+		url = reverse(home.view.watev)
+		resp = self.client.get(url)
+		self.assertEqual(resp.status_code, 200)
+		self.assertIn(w.title, resp.content)
 
 
 
