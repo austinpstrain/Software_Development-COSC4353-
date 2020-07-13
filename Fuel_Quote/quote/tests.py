@@ -116,12 +116,15 @@ class TestPricingModel:
 
 class TestHome(TestCase):
 
-	def test_whatever_list_view(self):
-		w=self.create_watev()
-		url = reverse(home.view.watev)
-		resp = self.client.get(url)
-		self.assertEqual(resp.status_code, 200)
-		self.assertIn(w.title, resp.content)
+	class TestViews(TestCase):
+
+	def test_customer_list_Get(self):
+		client = Client()
+		response = client.get(reverse('list'))
+
+
+		self.assertEquals(reponse.status_code,200)
+		self.assertTemplateUsed(response, 'accounts/customer.html')
 
 
 
