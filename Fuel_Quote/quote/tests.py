@@ -137,3 +137,27 @@ class TestHome(TestCase):
 		self.assertEqual(200, response.status_code)
 
 
+	def test_loginPage(self):
+		factory = RequestFactory()
+		request = factory.get('/login/')
+		response = home(request)
+		self.assertEqual(200, response.status_code)
+
+
+
+	def test_acc_settings(self):
+		factory = RequestFactory()
+		request = factory.get('/account/')
+		response = home(request)
+		self.assertEqual(200, response.status_code)
+
+	def test_user(self):
+		factory = RequestFactory()
+		request = factory.get('/user/')
+		response = home(request)
+		self.assertEqual(200, response.status_code)
+
+
+	
+
+
