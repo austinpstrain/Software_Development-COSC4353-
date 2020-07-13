@@ -130,6 +130,10 @@ class TestHome(TestCase):
 
 
 	
-
+	def test_home(self):
+		factory = RequestFactory()
+		request = factory.get('/home/')
+		response = home(request)
+		self.assertEqual(200, response.status_code)
 
 
