@@ -135,7 +135,7 @@ def customer(request, pk):
     quotes_count = quotes.count()
     context = {'cusotmer': customer, 'quotes': quotes,
                'users': users, 'quotes_count': quotes_count}
-    return render(request, 'Quote/customer.html', context)
+    return render(request, 'quote/customer.html', context)
 
 
 def updateRequest(request):
