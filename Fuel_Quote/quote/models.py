@@ -77,25 +77,81 @@ class Customer(models.Model):
 
 
 class Quote(models.Model):
-    user = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    CATEGORY = (
+        ('AL', 'Alabama'),
+        ('AK', 'Alaska'),
+        ('AZ', 'Arizona'),
+        ('AR', 'Arkansan'),
+        ('CA', 'California'),
+        ('CO', 'Colorado'),
+        ('CT', 'Connecticut'),
+        ('DE', 'Delaware'),
+        ('DC', 'District of Columbia'),
+        ('FL', 'Florida'),
+        ('GA', 'Georgia'),
+        ('HI', 'Hawaii'),
+        ('ID', 'Idaho'),
+        ('IL', 'Illinois'),
+        ('IN', 'Indiana'),
+        ('IA', 'Iowa'),
+        ('KS', 'Kansas'),
+        ('KY', 'Kentucky'),
+        ('LA', 'Louisiana'),
+        ('ME', 'Maine'),
+        ('MD', 'Maryland'),
+        ('MA', 'Massachusetts'),
+        ('MI', 'Michigan'),
+        ('MN', 'Minnesota'),
+        ('MS', 'Mississippi'),
+        ('MO', 'Missouri'),
+        ('MT', 'Montana'),
+        ('NE', 'Nebraska'),
+        ('NV', 'Nevada'),
+        ('NH', 'New Hampshire'),
+        ('NJ', 'New Jersey'),
+        ('NM', 'New Mexico'),
+        ('NY', 'New York'),
+        ('NC', 'North Carolina'),
+        ('ND', 'North Dakota'),
+        ('OH', 'Ohio'),
+        ('OK', 'Oklahoma'),
+        ('OR', 'Oregon'),
+        ('PA', 'Pennsylvania'),
+        ('RI', 'Rhode Island'),
+        ('SC', 'South Carolina'),
+        ('SD', 'South Dakota'),
+        ('TN', 'Tennessee'),
+        ('TX', 'Texas'),
+        ('UT', 'Utah'),
+        ('VT', 'Vermont'),
+        ('VA', 'Virginia'),
+        ('WA', 'Washington'),
+        ('WV', 'West Virginia'),
+        ('WI', 'Wisconsin'),
+        ('WY', 'Wyoming'),
+
+    )
+    customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     gallons_requested = models.FloatField(null=True)
     Address_1 = models.CharField(max_length=100, null=True)
     Address_2 = models.CharField(max_length=100, null=True)
     delivery_date = models.DateField(null=True)
     name = models.CharField(max_length=50, null=True)
     suggested_price = models.FloatField(null=True)
+    state = models.CharField(max_length=50, null=True, choices=CATEGORY)
+
 
     def __str__(self):
-        return self.name
+        return self.gallons_requested
+
 
 
 class Pricing(models.Model):
-    gallons_requested = models.ForeignKey(
-        Quote, null=True, on_delete=models.SET_NULL)
-    suggested_price = models.FloatField(null=True)
-    total_price = models.FloatField(null=True)
-    customer = models.ForeignKey(
-        User, null=True, on_delete=models.SET_NULL)
 
-    def __float__(self):
-        return self.suggested_price
+    in_state = models.FloatField(null=True)
+    out_of_state = models.FloatField(null=True)
+    his_rate = models.FloatField(null=True)
+    no_his_rate = models.FloatField(null=True)
+    gallons_1001 = models.FloatField(null=True)
+    gallons_999 = models.FloatField(null=True)
+    profit = models.FloatField(null=True)
