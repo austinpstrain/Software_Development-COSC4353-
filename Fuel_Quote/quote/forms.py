@@ -22,8 +22,8 @@ class CreateUserForm(UserCreationForm):
 
 
 
-class QuoteForm(ModelForm):
-	class Meta:
-		model = Quote
-		fields = '__all__'
-		exclude = ['total_amount']
+class GetquoteForm(ModelForm):
+    class Meta:
+        model = Getquote
+        fields = ['customer', 'gallons_requested', 'Address_1', 'state',
+                  'delivery_date', 'suggested_price']

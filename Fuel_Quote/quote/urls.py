@@ -6,7 +6,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path('home/<str:pk>', views.home, name ="home"),
+   #path('home/<str:pk>', views.home, name ="home"),
 #    path('quote/<str:pk>/', views.quote, name = 'quote'),
 #    path('history/<str:pk>/', views.history, name = 'history'),
     path('registerClient/', views.registerClient, name="registerClient"),
@@ -16,6 +16,10 @@ urlpatterns = [
     path('', views.loginPage, name="login"),
     path('user/', views.userPage, name="user-page"),
     path('account/', views.accountSettings, name="account"),
+    path('', views.dashboard, name="dashboard"),
+    path('quote/', views.quote, name="quote"),
+    path('customer/<str:pk>/', views.customer, name="customer"),
+    path('updateRequest/<str:pk>/', views.quote_form, name="quote_form"),
 
     path('reset_password/',
      auth_views.PasswordResetView.as_view(template_name="quote/password_reset.html"),

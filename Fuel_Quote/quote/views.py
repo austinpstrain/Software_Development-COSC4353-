@@ -108,7 +108,7 @@ def dashboard(request):
     total_requested = quotes.count()
 
     context = {'quotes': quotes, 'total_requested': total_requested}
-    return render(request, 'Quote/overview.html', context)
+    return render(request, 'quote/overview.html', context)
 
 
 def quote(request):
@@ -124,7 +124,7 @@ def quote(request):
             return redirect('/')
 
     context = {'quotes': quotes, 'quoteRequest': quoteRequest}
-    return render(request, 'Quote/quote.html', context)
+    return render(request, 'quote/quote.html', context)
 
 
 def customer(request, pk):
@@ -141,7 +141,7 @@ def customer(request, pk):
 def updateRequest(request):
     quoteRequest = GetquoteForm()
     context = {'quoteRequest': quoteRequest}
-    return render(request, 'Quote/quote.html', context)
+    return render(request, 'quote/quote.html', context)
 
 
 def quote_form(request):
@@ -155,4 +155,4 @@ def quote_form(request):
     #         return redirect('/')
 
     context = {'quoteRequest': quoteRequest}
-    return render(request, 'Quote/quote_form.html', context)
+    return render(request, 'quote/quote_form.html', context)
