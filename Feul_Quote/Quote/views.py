@@ -2,18 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from Quote.models import *
 from django.contrib.auth.models import User
-from django.contrib import messages
 from .form import GetquoteForm, CreateUserForm, CustomerForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import Group
-#from .decorators import unauthenticated_user,allowed_users, admin_only
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
-
+from django.contrib.auth.models import Group
 
 # Create your views here.
 
-def registerClient(request):
+
+def registerPage(request):
 
     form = CreateUserForm()
     if request.method == 'POST':
@@ -48,7 +47,6 @@ def loginPage(request):
 
     context = {}
     return render(request, 'Quote/login.html', context)
-
 
 def logoutUser(request):
     logout(request)
@@ -108,16 +106,3 @@ def quote_form(request):
 
     context = {'quoteRequest': quoteRequest}
     return render(request, 'Quote/quote_form.html', context)
-
-
-def accountSettings(request):
-    customer = request.user.customer
-    form = CustomerForm(instance=customer)
-
-    if request.method == 'POST':
-        form = CustomerForm(request.POST, request.FILES, instance=customer)
-        if form.is_valid():
-            form.save()
-
-    context = {'form': form}
-    return render(request, 'quote/account_settings.html', context)

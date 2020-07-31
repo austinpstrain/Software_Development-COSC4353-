@@ -7,11 +7,10 @@ urlpatterns = [
     path('quote/', views.quote, name="quote"),
     path('customer/<str:pk>/', views.customer, name="customer"),
     path('updateRequest/<str:pk>/', views.quote_form, name="quote_form"),
-    path('account/', views.accountSettings, name="account"),
-     path('registerClient/', views.registerClient, name="registerClient"),
+    path('register/', views.registerPage, name="register"),
 	path('login/', views.loginPage, name="login"),  
 	path('logout/', views.logoutUser, name="logout"),
-	path('reset_password/',
+	 path('reset_password/',
      auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"),
      name="reset_password"),
 

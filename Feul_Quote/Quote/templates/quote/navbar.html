@@ -29,25 +29,21 @@
     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      {% if request.user.is_staff %}
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'quote' %}">Quote</a>
-      </li>
-     <!-- {% else %}-->
-       <li class="nav-item">
-        <a class="nav-link" href="{% url 'account' %}">Settings</a>
-      </li>
-      {% endif %}
-    </ul>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+      <a class="nav-item nav-link" href="/customer">customer</a>
+
+      <a class="nav-item nav-link" href="{% url 'quote' %}">Quote</a>
+
+
+
+    </div>
   </div>
-  
+
   <span class="hello-msg">Hello, {{request.user}}</span>
   <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+  
 </nav>
 
 
