@@ -2,99 +2,32 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Customer(models.Model):
 
-    CATEGORY = (
-        ('AL', 'Alabama'),
-        ('AK', 'Alaska'),
-        ('AZ', 'Arizona'),
-        ('AR', 'Arkansan'),
-        ('CA', 'California'),
-        ('CO', 'Colorado'),
-        ('CT', 'Connecticut'),
-        ('DE', 'Delaware'),
-        ('DC', 'District of Columbia'),
-        ('FL', 'Florida'),
-        ('GA', 'Georgia'),
-        ('HI', 'Hawaii'),
-        ('ID', 'Idaho'),
-        ('IL', 'Illinois'),
-        ('IN', 'Indiana'),
-        ('IA', 'Iowa'),
-        ('KS', 'Kansas'),
-        ('KY', 'Kentucky'),
-        ('LA', 'Louisiana'),
-        ('ME', 'Maine'),
-        ('MD', 'Maryland'),
-        ('MA', 'Massachusetts'),
-        ('MI', 'Michigan'),
-        ('MN', 'Minnesota'),
-        ('MS', 'Mississippi'),
-        ('MO', 'Missouri'),
-        ('MT', 'Montana'),
-        ('NE', 'Nebraska'),
-        ('NV', 'Nevada'),
-        ('NH', 'New Hampshire'),
-        ('NJ', 'New Jersey'),
-        ('NM', 'New Mexico'),
-        ('NY', 'New York'),
-        ('NC', 'North Carolina'),
-        ('ND', 'North Dakota'),
-        ('OH', 'Ohio'),
-        ('OK', 'Oklahoma'),
-        ('OR', 'Oregon'),
-        ('PA', 'Pennsylvania'),
-        ('RI', 'Rhode Island'),
-        ('SC', 'South Carolina'),
-        ('SD', 'South Dakota'),
-        ('TN', 'Tennessee'),
-        ('TX', 'Texas'),
-        ('UT', 'Utah'),
-        ('VT', 'Vermont'),
-        ('VA', 'Virginia'),
-        ('WA', 'Washington'),
-        ('WV', 'West Virginia'),
-        ('WI', 'Wisconsin'),
-        ('WY', 'Wyoming'),
 
-    )
-    user = models.OneToOneField(
-        User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, null=True)
-    Address_1 = models.CharField(max_length=100, null=True)
-    Address_2 = models.CharField(max_length=100, null=True)
-    City = models.CharField(max_length=100, null=True)
-    State = models.CharField(max_length=100, null=True, choices=CATEGORY)
-    Zip_Code = models.CharField(max_length=10, null=True)
-    profile_pic = models.ImageField(
-        default="profile1.png", null=True, blank=True)
-    date_created = models.DateTimeField(auto_now_add=True, null=True)
+class UserProfile(models.Model):
+    STATE = (('TX', 'Texas'),('OTHERS', 'Out of Texas'))
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=100, default='')
+    address = models.CharField(max_length=100, default='')
+    city = models.CharField(max_length=20, default='')
+    state = models.CharField(max_length=20, choices=STATE)
+    zipcode = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 
-class Getquote(models.Model):
-    customer = models.ForeignKey(
-        Customer, null=True, on_delete=models.SET_NULL)
-    gallons_requested = models.FloatField(null=True)
-    Address_1 = models.CharField(max_length=100, null=True)
-    Address_2 = models.CharField(max_length=100, null=True)
-    state = models.CharField(max_length=50, null=True)
-    delivery_date = models.DateField(null=True)
-    name = models.CharField(max_length=50, null=True)
-    suggested_price = models.FloatField(null=True)
-
-    def __float__(self):
-        return self.gallons_requested
+class PriceHistoryModule(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    gallons_requested = models.IntegerField()
+    delivery_date = models.DateField()
+    delivery_address = models.CharField(max_length=200)
+    suggested_price = models.FloatField()
+    total_due = models.FloatField()
+    
+    def __str__(self):
+        return self.user.username
+       
 
 
-class Pricing(models.Model):
-    gallons_requested = models.ForeignKey(
-        Getquote, null=True, on_delete=models.SET_NULL)
-    suggested_price = models.FloatField(null=True)
-    customer = models.ForeignKey(
-        User, null=True, on_delete=models.SET_NULL)
 
-    def __float__(self):
-        return self.suggested_price

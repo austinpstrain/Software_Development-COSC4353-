@@ -1,10 +1,17 @@
 from django.urls import path
+from django.contrib import admin
+from django.urls import path, include
+from . import views
 
-from .import views
 
 urlpatterns = [
-    path('', views.dashboard, name="dashboard"),
-    path('quote/', views.quote, name="quote"),
-    path('customer/<str:pk>/', views.customer, name="customer"),
-    path('updateRequest/<str:pk>/', views.quote_form, name="quote_form"),
+    path("", views.index, name='index'),
+    path("home/", views.home, name='home'),
+    path('clientRegistration/', views.register, name='clientRegistration'),
+    path('clientProfile/', views.profile, name='clientProfile'),
+    path('editProfile', views.editProfile, name='editProfile'),
+    path('fqf/', views.fuelQuoteForm, name='fuelpredictionsystem-fqf'),
+    path('fqh/', views.fuelQuoteHistory, name='fuelpredictionsystem-fqh'),
+    # path('success/', views.success),
+
 ]
