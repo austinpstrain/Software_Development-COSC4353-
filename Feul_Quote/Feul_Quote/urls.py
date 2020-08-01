@@ -14,25 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
-from Quote import views as v
-#from . import views
+from django.urls import path, include
 
 urlpatterns = [
-    #path('', include('main.urls')), # main will be the name of your app
     path('admin/', admin.site.urls),
-    path('', include('Quote.urls')),
-    # path('clientProfile/', include('fuelpredictionsystem.urls')),
-    # path('fqf/', include('fuelpredictionsystem.urls')),
-    # path('fqh/', include('fuelpredictionsystem.urls')),
-    path("clientRegistration/", v.register, name="clientRegistration"),
-    # path("clientProfile/", v.clientProfile, name="clientProfile"),
-    path("clientProfile/", v.profile, name="clientProfile"),
-    path('fqf/', v.fuelQuoteForm, name="fuelQuoteForm"),
-    path('fqh/', v.fuelQuoteHistory, name="fuelQuoteHistory"),
-    path('', include("django.contrib.auth.urls")),
-    #path("clientRegistration/", include('fuelpredictionsystem.urls')),
-    path("loginHome/", v.loginHome, name="Home"),
-    path("editProfile/", v.editProfile, name="editProfile"),
-    path('success/', include('Quote.urls')),
+    path('', include('Quote.urls'))
 ]

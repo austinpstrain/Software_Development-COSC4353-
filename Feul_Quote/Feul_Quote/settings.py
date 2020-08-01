@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Quote.apps.QuoteConfig',
-    'crispy_forms',
+    'Quote.apps.QuoteConfig'
 
 ]
 
@@ -121,7 +120,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-CRISPY_TEMPLATE_PACK="bootstrap4"
-
-LOGIN_REDIRECT_URL = "/loginHome"
-LOGOUT_REDIRECT_URL = "/"
