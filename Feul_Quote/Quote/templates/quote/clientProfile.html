@@ -1,0 +1,24 @@
+{% extends "Quote/base_loggedin.html"%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br><br><br>
+<h1>Manage Your Profile</h1>
+
+<form method="post" class="from-group">
+		{% csrf_token %}
+		{{form|crispy}}
+		<p> <b>Username</b> : {{ user }}</p>
+		<p> <b>Full Name</b> : {{ user.userprofile.fullname }}</p>
+		<p> <b>Address</b> : {{ user.userprofile.address }}</p>
+		<p> <b>City</b> : {{ user.userprofile.city }}</p>
+		<p> <b>State</b> : {{ user.userprofile.state }}</p>
+
+<!-- 		<p> City : {{ user.city }}</p>
+		<p> State : {{ user.state }}</p> -->
+    	<button onclick="location.href='/editProfile'"  type="button" class="btn btn-success"><b>Edit Profile</b></button>
+ </form>
+ 
+{% endblock%}
+
