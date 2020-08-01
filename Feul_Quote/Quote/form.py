@@ -5,12 +5,15 @@ from django import forms
 
 from .models import *
 
-
 class GetquoteForm(ModelForm):
     class Meta:
         model = Getquote
-        fields = ['customer', 'gallons_requested', 'Address_1', 'state',
+        fields = ('__all__')
+'''
+        ['customer', 'gallons_requested', 'Address_1', 'state',
                   'delivery_date', 'suggested_price']
+
+'''
 class CustomerForm(ModelForm):
 	class Meta:
 		model = Customer

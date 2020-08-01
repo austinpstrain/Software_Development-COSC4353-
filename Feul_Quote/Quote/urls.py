@@ -5,6 +5,7 @@ from .import views
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
     path('quote/', views.quote, name="quote"),
+    path('account/', views.accountSettings, name="account"),
     path('customer/<str:pk>/', views.customer, name="customer"),
     path('updateRequest/<str:pk>/', views.quote_form, name="quote_form"),
     path('register/', views.registerPage, name="register"),
