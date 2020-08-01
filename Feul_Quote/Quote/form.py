@@ -5,22 +5,10 @@ from django import forms
 
 from .models import *
 
-class GetquoteForm(ModelForm):
-    class Meta:
-        model = Getquote
-        fields = ('__all__')
-'''
-        ['customer', 'gallons_requested', 'Address_1', 'state',
-                  'delivery_date', 'suggested_price']
 
-'''
-class CustomerForm(ModelForm):
-	class Meta:
-		model = Customer
-		fields = '__all__'
-		exclude = ['user']
 
 class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
+

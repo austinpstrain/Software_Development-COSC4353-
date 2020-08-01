@@ -75,7 +75,26 @@ class Customer(models.Model):
 
 
 class Getquote(models.Model):
-    name = models.FloatField(null=True)
+    customer = models.ForeignKey(
+        Customer, null=True, on_delete=models.SET_NULL)
+    gallons_requested = models.FloatField(null=True)
+    Address_1 = models.CharField(max_length=100, null=True)
+    Address_2 = models.CharField(max_length=100, null=True)
+    state = models.CharField(max_length=50, null=True)
+    delivery_date = models.DateField(null=True)
+    name = models.CharField(max_length=50, null=True)
+    suggested_price = models.FloatField(null=True)
+
+    def __float__(self):
+        return self.gallons_requested
 
 
-   
+class Pricing(models.Model):
+    gallons_requested = models.ForeignKey(
+        Getquote, null=True, on_delete=models.SET_NULL)
+    suggested_price = models.FloatField(null=True)
+    customer = models.ForeignKey(
+        User, null=True, on_delete=models.SET_NULL)
+
+    def __float__(self):
+        return self.suggested_price

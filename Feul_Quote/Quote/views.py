@@ -1,34 +1,35 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from Quote.models import *
 from django.contrib.auth.models import User
-from .form import GetquoteForm, CreateUserForm, CustomerForm
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
+from .form import CreateUserForm
+from django.contrib.auth.forms import UserCreationForm
 
-# Create your views here.
+
+
+
 
 
 def registerPage(request):
-
-    form = CreateUserForm()
     if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
+        form = RegisterForm(request.POST)
+        profile_form = UserProfileFrom(request.POST)
+
+        if form.is_valid() and profile_form.is_valid():
             user = form.save()
-            username = form.cleaned_data.get('username')
-
-
-            messages.success(request, 'Account was created for ' + username)
-
-            return redirect('login')
-        
-
-    context = {'form':form}
-    return render(request, 'Quote/register.html', context)
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            
+            return redirect("/home")
+    else:
+        form = RegisterForm()
+        profile_form= UserProfileFrom()
+    args = {"form":form, "profile_form":profile_form}
+    return render(request, "Quote/register.html", args)
 
 
 def loginPage(request):
@@ -41,7 +42,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('home')
         else:
             messages.info(request, 'Username OR password is incorrect')
 
@@ -52,70 +53,11 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-def accountSettings(request):
-    customer = request.user.customer
-    form = CustomerForm(instance=customer)
-
-    if request.method == 'POST':
-        form = CustomerForm(request.POST, request.FILES,instance=customer)
-        if form.is_valid():
-            form.save()
+def home(request):
+     return render(request, 'Quote/home.html')
 
 
-    context = {'form':form}
-    return render(request, 'Quote/account_settings.html', context)
+def index(request):
+     return render(request, 'Quote/home.html')
 
 
-def dashboard(request):
-    quotes = Getquote.objects.all()
-    total_requested = quotes.count()
-
-    context = {'quotes': quotes, 'total_requested': total_requested}
-    return render(request, 'Quote/overview.html', context)
-
-
-def quote(request):
-    quotes = Getquote.objects.all()
-
-    quoteRequest = GetquoteForm()
-
-    if request.method == 'POST':
-        print('Printing POST:', request.POST)
-        quoteRequest = GetquoteForm(request.POST)
-        if quoteRequest.is_valid():
-            quoteRequest.save()
-            return redirect('/')
-
-    context = {'quotes': quotes, 'quoteRequest': quoteRequest}
-    return render(request, 'Quote/quote.html', context)
-
-
-def customer(request, pk):
-    customer = Customer.objects.get(id=pk)
-    users = User.objects.all()
-    quotes = customer.getquote_set.all()
-
-    quotes_count = quotes.count()
-    context = {'cusotmer': customer, 'quotes': quotes,
-               'users': users, 'quotes_count': quotes_count}
-    return render(request, 'Quote/customer.html', context)
-
-
-def updateRequest(request):
-    quoteRequest = GetquoteForm()
-    context = {'quoteRequest': quoteRequest}
-    return render(request, 'Quote/quote.html', context)
-
-
-def quote_form(request):
-    quoteRequest = GetquoteForm()
-
-    # if request.method == 'POST':
-    #     print('Printing POST:', request.POST)
-    #     quoteRequest = GetquoteForm(request.POST)
-    #     if quoteRequest.is_valid():
-    #         quoteRequest.save()
-    #         return redirect('/')
-
-    context = {'quoteRequest': quoteRequest}
-    return render(request, 'Quote/quote_form.html', context)
