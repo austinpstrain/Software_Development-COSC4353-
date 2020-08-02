@@ -1,0 +1,54 @@
+{% extends "fuelpredictionsystem/base_loggedin.html"%}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+    <br><br><br>
+    <h1>Get a Quote!</h1>
+    <form  method="POST" action="/fqf/">
+        {% csrf_token %}
+        {{form|crispy}}
+
+        <script>
+            document.getElementById("id_delivery_address").value = "{{ user.userprofile.address }} {{ user.userprofile.city }} {{ user.userprofile.state }}";
+            document.getElementById("id_suggested_price").readOnly = true;
+            document.getElementById("id_delivery_address").readOnly = true;
+            document.getElementById("id_total_due").readOnly = true;
+        </script>
+
+        <button type="button" onclick="calculate()" style="margin:10px;height:50px;width:200px", class='btn btn-success' >Calculate Price</button>
+            <script>
+                function calculate() {
+                    var gallons = document.getElementById("id_gallons_requested").value;
+                    if (gallons > 1000){
+                        var g_r_Factor = 0.02;
+                    } else {
+                        g_r_Factor = 0.03;
+                    } 
+                    var location = "{{ user.userprofile.state }}"
+                    if (location =="TX"){
+                        var location_fact = 0.02
+                    } else{
+                        location_fact = 0.04
+                    }
+
+                    var log = "{{ history_list1|length }}"
+                    if (log > 0){
+                        var history_factor = 0.01
+                    } else{
+                        var history_factor = 0.0
+                    }
+
+                    var company_factor = 0.1
+                    var margin = 1.50 * (location_fact - history_factor + g_r_Factor + company_factor)
+                    var Suggested_Price = 1.50 + margin; 
+                    var Total = Suggested_Price * gallons; 
+
+                    document.getElementById("id_suggested_price").value = Suggested_Price;
+                    document.getElementById("id_total_due").value = Total;
+
+                } 
+            </script>
+        <button type="submit", style="margin:10px;height:50px;width:200px", class='btn btn-success'>Submit</button>
+    </form>    
+{% endblock content %}

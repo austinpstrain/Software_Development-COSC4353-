@@ -1,0 +1,25 @@
+{% extends "fuelpredictionsystem/base_loggedin.html"%}
+
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <form method="post" class="from-group">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <br>
+    <br>
+    <br>
+    {% if user.is_authenticated %}
+    
+    <h2>Welcome {{ user.userprofile.fullname  }}!</h2> 
+    
+    <br>
+    <button style="margin:10px;height:50px;width:200px", onclick="location.href='/fqf'" type="button" class="btn btn-success">Get a Fuel Quote</button>  
+    <button style="margin:10px;height:50px;width:200px", onclick="location.href='/fqh'" type="button" class="btn btn-success">Fuel Quote History</button> {% endif %}
+    
+  </form>
+{% endblock %}
+
+
