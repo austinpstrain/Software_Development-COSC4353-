@@ -6,112 +6,117 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-    <link rel="stylesheet" type="text/css" href="{% static 'fuelpredictionsystem/main.css' %}">
-    <title>Fuel Price Predictor</title>
-    </head>
-    <body>
-	
-		<img src="{% static '/images/price_home.jpg' %}" align="right"/>
-        <header class="site-header">
-          <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-            <div class="container">
-              <a class="navbar-brand mr-4" href="/">Fuel Price Predictor Home</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarToggle">
-                <div class="navbar-nav mr-auto">
-                  <a class="nav-item nav-link" href="/login">Client Login</a>
-				          <a class="nav-item nav-link" href="/clientRegistration">Client Registration</a>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </header>
-        <main role="main" class="container">
-            <div class="row">
-              <div class="col-md-8">
-                {% block content %}{% endblock %}
-              </div>
-            </div>
-        </main>
-    </body>
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'fuelpredictionsystem/main.css' %}">
+  <title>Fuel Price Predictor</title>
+</head>
+
+<body>
+
+  <img src="{% static '/images/price_home.jpg' %}" align="right" />
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+      <div class="container">
+        <a class="navbar-brand mr-4" href="/">Fuel Price Predictor Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+          aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href="/login">Client Login</a>
+            <a class="nav-item nav-link" href="/clientRegistration">Client Registration</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </main>
+</body>
+
 </html>
 
 
 <style>
   body {
-      align-self: center;
-      background-color: lightblue;
+    align-self: center;
+    background-color: lightblue;
   }
 
   form {
-      background-color: #b0d1f0e8;
-      padding: 1%;
+    background-color: #b0d1f0e8;
+    padding: 1%;
   }
 
   label,
   p {
-      font-size: large;
-      font-weight: 500;
-      padding-left: 2px;
-      padding-right: 2px;
-      border: none;
+    font-size: large;
+    font-weight: 500;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
   }
 
   h1 {
-      padding-left: 5%;
-      font-size: 100px;
+    padding-left: 5%;
+    font-size: 100px;
   }
 
   table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-      background-color: #b0d1f0e8;
-      padding: 5%;
-      padding-left: 5%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #b0d1f0e8;
+    padding: 5%;
+    padding-left: 5%;
   }
 
   td,
   th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
   }
 
   tr:nth-child(even) {
-      background-color: #dddddd;
+    background-color: #dddddd;
   }
 
   input {
-      padding: 12px 20px;
-      margin: 8px 0;
-      box-sizing: border-box;
-      border: none;
-      border-bottom: 2px solid red;
-      background-color: beige;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid red;
+    background-color: beige;
   }
 
   label,
   p {
-      font-size: large;
-      font-weight: 500;
-      padding-left: 2px;
-      padding-right: 2px;
-      border: none;
+    font-size: large;
+    font-weight: 500;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
   }
 
   h1 {
-      padding-left: 5%;
-      font-size: 100px;
+    padding-left: 5%;
+    font-size: 100px;
   }
 </style>
