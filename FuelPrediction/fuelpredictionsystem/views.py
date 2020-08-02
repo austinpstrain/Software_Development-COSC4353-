@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm, EditProfileForm, UserProfileFrom, FuelQuoteHistory, FuelHistoryPage
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
-from .models import UserProfile, PriceHistoryModule
+from .models import UserProfile, PricingHistory
 from django.http import HttpResponseRedirect
 
 
@@ -20,10 +20,10 @@ def home(request):
 
 def fuelQuoteHistory(request):
     form = FuelHistoryPage()
-    history_list = PriceHistoryModule.objects.filter(user=request.user)
+    history_list = PricingHistory.objects.filter(user=request.user)
     args = {'history_list': history_list}
 
-    return render(request, 'fuelpredictionsystem/fqh.html', args)
+    return render(request, 'fuelpredictionsystem/quote_history.html', args)
 
 
 def register(request):
@@ -79,7 +79,7 @@ def go_home_page(request):
 
 
 def fuelQuoteForm(request):
-    history_list1 = PriceHistoryModule.objects.filter(user=request.user)
+    history_list1 = PricingHistory.objects.filter(user=request.user)
     if request.method == 'POST':
         form = FuelQuoteHistory(request.POST)
         if form.is_valid():
@@ -87,7 +87,7 @@ def fuelQuoteForm(request):
             form.instance.user = request.user
             form.save()
             args = {"form": form, "history_list1": history_list1}
-            return render(request, 'fuelpredictionsystem/fqf.html', args)
+            return render(request, 'fuelpredictionsystem/quote_form.html', args)
     else:
         form = FuelQuoteHistory()
-    return render(request, 'fuelpredictionsystem/fqf.html', {"form": form, "history_list1": history_list1})
+    return render(request, 'fuelpredictionsystem/quote_form.html', {"form": form, "history_list1": history_list1})
