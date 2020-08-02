@@ -4,52 +4,61 @@
 
 {% block content %}
 <br><br><br>
-    <h1>Fuel Quote History</h1>
+<h1>Fuel Quote History</h1>
+
 <head>
     <style>
         #customers {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
-            }
-
-        #customers td, #customers th {
-          border: 3px solid #ddd;
-          padding: 8px;
         }
 
-        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        #customers td,
+        #customers th {
+            border: 3px solid #ddd;
+            padding: 8px;
+        }
 
-        #customers tr:hover {background-color: #ddd;}
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
 
         #customers th {
-          padding-top: 12px;
-          padding-bottom: 12px;
-          text-align: left;
-          background-color: #4CAF50;
-          color: white;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: lightseagreen;
+            color: Black;
         }
-
-</style>
+    </style>
 </head>
-    <table id="customers"style="width:159%">
-        <tr>
-            <th>Gallons Requested</th>
-            <th>Delivery Date</th>
-            <th>Delivery Address</th>
-            <th>Suggested price</th>
-            <th>Total Due</th>
-        </tr>
-    
-        <form method="post" class="from-group">
-            {% csrf_token %}
-            {{ history_list.as_table }}
+<table id="customers" style="width:158%">
+    <tr>
+        <th>Gallons Requested</th>
+        <th>Delivery Date</th>
+        <th>Delivery Address</th>
+        <th>Suggested price</th>
+        <th>Total Due</th>
+    </tr>
 
-            {% for PriceHistory in history_list %}
-            <tr>
-                <td align="left">{{ PriceHistory.gallons_requested}}</td>  <td align="left">{{ PriceHistory.delivery_date }}</td> <td align="left">{{ PriceHistory.delivery_address }}</td> <td align="left">{{ PriceHistory.suggested_price }}</td> <td align="left">{{ PriceHistory.total_due}}</td>
-            </tr>
-            {% endfor %}
-        </form>  
-    </table>         
+    <form method="post" class="from-group">
+        {% csrf_token %}
+        {{ history_list.as_table }}
+
+        {% for PriceHistory in history_list %}
+        <tr>
+            <td align="left">{{ PriceHistory.gallons_requested}}</td>
+            <td align="left">{{ PriceHistory.delivery_date }}</td>
+            <td align="left">{{ PriceHistory.delivery_address }}</td>
+            <td align="left">{{ PriceHistory.suggested_price }}</td>
+            <td align="left">{{ PriceHistory.total_due}}</td>
+        </tr>
+        {% endfor %}
+    </form>
+</table>
 {% endblock %}
