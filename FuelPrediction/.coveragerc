@@ -1,0 +1,34 @@
+# .coveragerc to control coverage.py
+[run]
+source = .
+omit =
+  
+   *manage.py
+   
+   
+
+   
+   *migrations/*
+   *asgi.py
+   
+   *wsgi.py
+   */views.py
+   
+   
+   */urls.py
+   */apps.py
+  */tests.py
+  */forms.py
+
+   
+
+   
+   */__pycache__/*
+   */site-packages/*
+   */distutils/*
+
+
+[report]
+#fail_under = 100
+show_missing = True
+#skip_covered = True
