@@ -1,5 +1,4 @@
 import unittest
-#from fuelpredictionsystem import registration
 from django.test import TestCase
 from fuelpredictionsystem.forms import RegisterForm
 # Create your tests here.
@@ -27,15 +26,15 @@ class TestRegistrationForm(TestCase):
 
 	    #test valid data
 	    valid_data = {
-	      "username": "anna1",
-		  "first_name" : "anna", 
-		  "last_name" : "fariha",
-		  "email" : "anna@gmail.com",
-		  "phone" : "12345678",
+	      "username": "sam",
+		  "first_name" : "sam", 
+		  "last_name" : "sammy",
+		  "email" : "sam@gmail.com",
+		  "phone" : "71355555",
 		  "city" : "Houston",
 		  "state" : "Tx",
-		  "password1" : "efuvalona1",
-		  "password2" : "efuvalona1"
+		  "password1" : "cosc4353sum",
+		  "password2" : "cosc4353sum"
 	    }
 	    form = RegisterForm(data=valid_data)
 	    form.is_valid()

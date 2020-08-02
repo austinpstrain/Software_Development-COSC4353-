@@ -1,5 +1,4 @@
 import unittest
-#from fuelpredictionsystem import registration
 from django.test import TestCase
 from fuelpredictionsystem.forms import FuelQuoteHistory
 
@@ -20,8 +19,8 @@ class TestPriciModule(TestCase):
 
 
 	    valid_data = {
-		  "gallons_requested" : "1000",
-		  "delivery_date" : "05-30-2020",
+		  "gallons_requested" : "1500",
+		  "delivery_date" : "08-30-2020",
 		  "delivery_address" : "Texas" 
 	    }
 	    form = FuelQuoteHistory(data=valid_data)

@@ -1,5 +1,4 @@
 import unittest
-#from fuelpredictionsystem import registration
 from django.test import TestCase
 from fuelpredictionsystem.forms import EditProfileForm
 # Create your tests here.
@@ -8,25 +7,27 @@ from fuelpredictionsystem.forms import EditProfileForm
 class TestEditProfileForm(TestCase):
   
 	def test_registration_form(self):
-    	# test invalid data
-	   #  invalid_data = {
-		  # "email" : "",
-		  # "first_name" : "",
-		  # "last_name" : ""
+    	 #test invalid data
 
-	   #  }
-	   #  form = EditProfileForm(data=invalid_data)
-	   #  form.is_valid()
-	   #  self.assertTrue(form.errors)
+	    invalid_data = {
+		   "email" : "",
+		   "first_name" : "",
+		   "last_name" : ""
+
+	    }
+	    form = EditProfileForm(data=invalid_data)
+	    form.is_valid()
+	    self.assertTrue(form.errors)
 
 	    #test valid data
+	    
 	    valid_data = {
 		  
-		  "fullname" : "Imtiaz",
-		  "address" : "2111 Holly Hall",
+		  "fullname" : "Jaffar",
+		  "address" : "147 address",
 		  "city" : "Houston",
 		  "state" : "OTHERS",
-		  "zipcode" : "77045"
+		  "zipcode" : "77088"
 	    }
 	    form = EditProfileForm(data=valid_data)
 	    form.is_valid()
