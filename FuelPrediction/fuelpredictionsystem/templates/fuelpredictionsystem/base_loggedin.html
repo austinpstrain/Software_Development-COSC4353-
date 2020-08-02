@@ -6,134 +6,152 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'fuelpredictionsystem/main.css' %}">
-    <title>Fuel Price Predictor</title>
+<head>
 
-        <!-- Bootstrap 4 -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'fuelpredictionsystem/main.css' %}">
+  <title>Fuel Price Predictor</title>
 
-      <!-- Font Awesome -->
-      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
 
-      <!-- Moment.js -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-      <!-- Tempus Dominus Bootstrap 4 -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
-    
-    </head>
-    <body>
-	
-		<img src="{% static 'images/price_home.jpg' %}" align="right"/>
-        <header class="site-header">
-          <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-            <div class="container">
-              <a class="navbar-brand mr-4" href="/">JAAZ FUEL</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarToggle">
-                <div class="navbar-nav mr-auto">
-                  <a class="nav-item nav-link" href="/fqf">Get A Quote</a>
-                  <a class="nav-iten nav-link" href="/fqh">History</a>
-                  <a class="nav-item nav-link" href="/clientProfile">Profile</a>
+  <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
+    integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
 
-                </div>
-                <!-- Navbar Right Side -->
-                <div class="navbar-nav">
-                  <a class="nav-item nav-link" href="/logout">LogOut</a>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </header>
-        <main role="main" class="container">
-            <div class="row">
-              <div class="col-md-8">
-                {% block content %}{% endblock %}
-              </div>
-            </div>
-        </main>
-    </body>
+  <!-- Tempus Dominus Bootstrap 4 -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+    integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+    integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <img src="{% static 'images/price_home.jpg' %}" align="right" />
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+      <div class="container">
+        <a class="navbar-brand mr-4" href="{% url 'Home' %}">JAAZ FUEL</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+          aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href="/fqf">Get A Quote</a>
+            <a class="nav-iten nav-link" href="/fqh">History</a>
+            <a class="nav-item nav-link" href="/clientProfile">Profile</a>
+
+          </div>
+          <!-- Navbar Right Side -->
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/logout">LogOut</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </main>
+</body>
+
 </html>
 
 <!---CUSTOM STYLING-->
 <style>
   body {
-      align-self: center;
-      background-color: lightblue;
+    align-self: center;
+    background-color: lightblue;
   }
 
   form {
-      background-color: #b0d1f0e8;
-      padding: 1%;
+    background-color: #b0d1f0e8;
+    padding: 1%;
   }
 
   label,
   p {
-      font-size: large;
-      font-weight: 500;
-      padding-left: 2px;
-      padding-right: 2px;
-      border: none;
+    font-size: large;
+    font-weight: 500;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
   }
 
   h1 {
-      padding-left: 1%;
-      font-size: 50px;
+    padding-left: 1%;
+    font-size: 50px;
   }
 
   table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-      background-color: #b0d1f0e8;
-      padding: 5%;
-      padding-left: 5%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #b0d1f0e8;
+    padding: 5%;
+    padding-left: 5%;
   }
 
   td,
   th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
   }
 
   tr:nth-child(even) {
-      background-color: #dddddd;
+    background-color: #dddddd;
   }
 
   input {
-      padding: 12px 20px;
-      margin: 8px 0;
-      box-sizing: border-box;
-      border: none;
-      border-bottom: 2px solid red;
-      background-color: beige;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid red;
+    background-color: beige;
   }
 
   label,
   p {
-      font-size: large;
-      font-weight: 500;
-      padding-left: 2px;
-      padding-right: 2px;
-      border: none;
+    font-size: large;
+    font-weight: 500;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
   }
 
   h1 {
-      padding-left: 5%;
-      font-size: 100px;
+    padding-left: 5%;
+    font-size: 100px;
   }
 </style>
