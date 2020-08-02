@@ -16,7 +16,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 
-class PriceHistoryModule(models.Model):
+class PricingHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     gallons_requested = models.IntegerField()
     delivery_date = models.DateField()

@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import datetime
 from django.forms import ModelForm
-from .models import PriceHistoryModule
+from .models import PricingHistory
 from .models import UserProfile
 
 
@@ -41,7 +41,7 @@ class DateInput(forms.DateInput):
 
 class FuelQuoteHistory(forms.ModelForm):
 	class Meta:
-		model = PriceHistoryModule
+		model = PricingHistory
 		fields = ['gallons_requested',  'delivery_date', 'delivery_address','suggested_price', 'total_due']
 		widgets = {
 		            'delivery_date': DateInput(),
@@ -67,5 +67,5 @@ class FuelQuoteHistory(forms.ModelForm):
 class FuelHistoryPage(forms.ModelForm):
 	post = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control','placeholder': 'Write a post...'}))
 	class Meta:
-		model = PriceHistoryModule
+		model = PricingHistory
 		fields = ['gallons_requested',]
