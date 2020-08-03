@@ -43,7 +43,7 @@
         <th>Delivery Date</th>
         <th>Delivery Address</th>
         <th>Suggested price</th>
-        <th>Total Due</th>
+        <th>Total Amount Due</th>
     </tr>
 
     <form method="post" class="from-group">
@@ -56,7 +56,7 @@
             <td align="left">{{ PriceHistory.delivery_date }}</td>
             <td align="left">{{ PriceHistory.delivery_address }}</td>
             <td align="left">{{ PriceHistory.suggested_price }}</td>
-            <td align="left">{{ PriceHistory.total_due}}</td>
+            <td align="left">{{ PriceHistory.total_amount_due}}</td>
         </tr>
         {% endfor %}
     </form>

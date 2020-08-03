@@ -22,7 +22,7 @@ class PricingHistory(models.Model):
     delivery_date = models.DateField()
     delivery_address = models.CharField(max_length=200)
     suggested_price = models.FloatField()
-    total_due = models.FloatField()
+    total_amount_due = models.FloatField()
 
     def __str__(self):
         return self.user.username

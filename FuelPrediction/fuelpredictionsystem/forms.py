@@ -42,7 +42,7 @@ class DateInput(forms.DateInput):
 class FuelQuoteHistory(forms.ModelForm):
 	class Meta:
 		model = PricingHistory
-		fields = ['gallons_requested',  'delivery_date', 'delivery_address','suggested_price', 'total_due']
+		fields = ['gallons_requested',  'delivery_date', 'delivery_address','suggested_price', 'total_amount_due']
 		widgets = {
 		            'delivery_date': DateInput(),
 		        }
@@ -53,7 +53,7 @@ class FuelQuoteHistory(forms.ModelForm):
 		user.delivery_date = self.cleaned_data['delivery_date']
 		user.delivery_address = self.cleaned_data['delivery_address']
 		user.suggested_price = self.cleaned_data['suggested_price']
-		user.total_due = self.cleaned_data['total_due']
+		user.total_due = self.cleaned_data['total_amount_due']
 		if commit:
 			user.save()
 		return user
