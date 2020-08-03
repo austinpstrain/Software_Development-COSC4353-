@@ -87,7 +87,8 @@ def fuelQuoteForm(request):
             form.instance.user = request.user
             form.save()
             args = {"form": form, "history_list1": history_list1}
-            return render(request, 'fuelpredictionsystem/quote_form.html', args)
+            return redirect('/fqh')
+            #return render(request, 'fuelpredictionsystem/quote_form.html', args)
     else:
         form = FuelQuoteHistory()
     return render(request, 'fuelpredictionsystem/quote_form.html', {"form": form, "history_list1": history_list1})
